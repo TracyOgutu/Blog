@@ -1,0 +1,78 @@
+{% extends 'bootstrap/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thought Pool</title>
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/profile.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Marck+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
+{% endblock %}
+
+</head>
+<body>
+        {% block content %}
+        <div class="container" >
+            <div class="row" style="font-size: 30px;">
+                <!-- displaying Username -->
+                <div class ="col-md-4">
+                    <h3 style="text-transform: uppercase; font-family: 'Courgette', cursive;"><b>{{user.username}} PROFILE</b></h3>
+        
+                <!-- Displaying user bio -->
+                {%if user.bio%}
+                <p>{{user.bio}}</p>
+                {%else%}
+                <p>{{user.username|capitalize}} has no bio</p>
+                {%endif%}
+                
+                {% if user == current_user %}
+                <a style="font-family: 'Courgette', cursive;" href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+                {% endif %}
+        
+                </div>
+        
+                <!-- Displaying profile photo -->
+                <div class="col-md-4"style="font-family: 'Courgette', cursive;" >
+                    {%if user.profile_pic_path%}
+                    <img src ="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class ="img-thumbnail">
+                    {%else%}
+                    <p>No profile picture</p>
+                    {%endif%}
+        
+                    {%if user==current_user%}
+                    <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
+                        <input type="file" name="photo" class="form-control" required>
+                        <input type="submit">
+                    </form>
+                    {%endif%}
+                
+                
+                </div><br><br>
+
+                <div class="row" style="font-family: 'Courgette', cursive;" >
+                    <div class="col-sm-6" style="border:2px double black;border-radius: 15px 50px 30px 5px; margin-top: 20px;">
+                            <h3 style="text-transform: uppercase;" class="card-title"><b>{{current_user.username}} COMMENTS</b></h3>
+                            {%for comment in commentslist%}
+                
+                            <h3>Date: {{comment.comment_date}}</h3>
+                            <h3 class="card-text"> Comment: {{comment.comment}}</h3>
+                            {%endfor%}
+                    </div>
+                    
+                </div>
+               
+        
+                
+            </div>
+        </div>
+        {%endblock%}
+    
+</body>
+</html>
+

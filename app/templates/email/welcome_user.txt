@@ -1,0 +1,4 @@
+Hello {{user.username}}
+Welcome to Tracy Blog.
+Thank you for have signing up.
+Feel free to browse through the blogs.
