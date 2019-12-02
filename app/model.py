@@ -55,6 +55,10 @@ class Post(db.Model):
     name=db.Column(db.String(255),nullable=False)
     date=db.Column(db.DateTime)
 
+    def __repr__(self):
+        return f'Post: id: {self.id} post: {self.content}'
+
+
 
 class Comment(db.Model):
 
@@ -67,7 +71,7 @@ class Comment(db.Model):
     comment_date=db.Column(db.DateTime)
 
     def __repr__(self):
-        return f'Comment: id: {self.id} comment: {self.description}'
+        return f'Comment: id: {self.id} comment: {self.comment}'
 
     @classmethod
     def get_comments(cls,user_id):
