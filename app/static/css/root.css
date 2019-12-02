@@ -1,0 +1,18 @@
+body{
+    /* background: #360033; /* fallback for old browsers 
+    background: -webkit-linear-gradient(to right, #360033, #0b8793); /* Chrome 10-25, Safari 5.1-6 
+    background: linear-gradient(to right, #360033, #0b8793); */
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* background-image: url("https://www.desktopbackground.org/p/2014/07/08/790000_trevi-fountain-7-hd-wallpapers_1280x1024_h.jpg"); */
+    background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), url("http://img.fliptab.io/paris/1920x1200/60252285.jpg");
+    width: 100%;
+    height:100%;
+    background-size: cover;
+    object-fit: fill;
+    font-family: 'Marck Script', cursive;
+    font-size: 40px;
+} 
