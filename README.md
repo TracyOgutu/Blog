@@ -9,7 +9,7 @@
 This project is a personal blog website.
 
 Navigation pages are present include:
-* _Sign Up and sign in page_
+* _Sign Up and Sign In page_
 
 
 * _Home Page_
@@ -26,7 +26,7 @@ Navigation pages are present include:
 
 * _Add Post Page_
 
-      * _Has an input form for posting a blog post_
+     * _Has an input form for posting a blog post_
 
 * _Comment Page_
 
@@ -63,10 +63,10 @@ To get more help on python, check out the python documentation at https://docs.p
 ## USER INTERACTION
 
 1. To run the application, type ./start.sh
-2. Navigate to the homepage
-3. Sign up to view pitches
-4. Check your email to see the sign up message
-5. Navigate the website to make pitch, vote or view pitches
+2. Sign up to access the blog website
+3. Check your email to see the sign up message
+4. Navigate to the homepage
+5. Navigate the website to make a blog post, view posts, profile or comment
 
 ## TECHNOLOGIES USED
 
@@ -118,5 +118,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## LINK TO HEROKU
+ https://blogreflections.herokuapp.com/ 
 
 
