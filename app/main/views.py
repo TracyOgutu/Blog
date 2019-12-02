@@ -48,7 +48,7 @@ def showpost():
     content=request.form['content']
     
     #creating an instance of post class
-    postadded=Post(title=title,subtitle=subtitle,name=name,content=content,date=datetime.now())
+    postadded=Post(owner_id=current_user.id,title=title,subtitle=subtitle,name=name,content=content,date=datetime.now())
 
     #adding to the database
     db.session.add(postadded)
@@ -110,7 +110,7 @@ def addcomment(posts_id):
 def configurecomment(posts_id):
     comment=request.form['comment']
     posts=Post.query.get(posts_id)
-    newcomment=Comment(posts_id=posts_id,user_id=current_user._get_current_object().id,comment=comment,comment_date=datetime.now())
+    newcomment=Comment(id=current_user.id,comment=comment,comment_date=datetime.now())
 
     db.session.add(newcomment)
     db.session.commit()
@@ -119,15 +119,48 @@ def configurecomment(posts_id):
 
 @main.route('/displaycomment', methods=['POST','GET'])
 def displaycomment():
-
+    
     all_comments=Comment.query.order_by(Comment.comment_date.desc()).all()
 
     return render_template('displaycomment.html',all_comments = all_comments)
 
-@main.route('/deletepost/<uname>')
-def deletepost(uname):
-    deleteitem=Post.query.filter_by(name=uname).first()
-    db.session.query(deleteitem)
+@main.route('/deletecomment/<int:comments_id>')
+
+def deletecomment(comments_id):
+
+    # newcomment=Comment(id=id,posts_id=posts_id,user_id=user_id,comment=comment,comment_date=datetime.now())
+
+    deletecom=Comment.query.filter_by(id=comments_id).first()
+    
+    db.session.delete(deletecom)
+    db.session.commit()
+
+    return render_template('displaycomment.html')
+    
+# @main.route('/updatepost/<int:posts_id>', methods=['GET','POST'])
+# @login_required
+# def updatepost(posts_id):
+
+
+#     blog=Post.query.filter_by(id=posts_id).first()
+
+#     title=request.form['title']
+#     subtitle=request.form['subtitle']
+#     content=request.form['name']
+#     name=request.form['content']
+    
+#     db.session.add(blog)
+#     db.session.commit()
+
+#     return redirect(url_for('.index',posts_id=blog.id))
+
+#     return render_template('profile/updatepost.html')
+
+
+@main.route('/deletepost/<int:posts_id>')
+def deletepost(posts_id):
+    deleteitem=Post.query.filter_by(id=posts_id).first()
+    
     db.session.delete(deleteitem)
     db.session.commit()
 
